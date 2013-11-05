@@ -5,24 +5,26 @@
         <!-- build:js scripts/popup.js -->
         <script src="scripts/popup.js"></script>
         <script src="lib/jquery.js"></script>
+        <script src="lib/jquery.zclip.min.js"></script>
         <!-- endbuild -->
     </head>
     <body>
         <!-- CHROME EXTENSION POPUP -->
         <div id="facespace"></div>
         <form>
-            First name: <input id="firstname" type="text" name="firstname" value="">
-            Last name: <input id="lastname" type="text" name="lastname" value="">
-            Email: <input id="email" type="text" name="email" value="">
-            Nickname: <input id="nickname" type="text" name="nickname" value="">
-            Password: <input id="password" type="text" name="password" value="">
+            First name: <input id="firstname" type="text" name="firstname" value="" readonly>
+
+            Last name: <input id="lastname" type="text" name="lastname" value="" readonly>
+            Email: <input id="email" type="text" name="email" value="" readonly>
+            Nickname: <input id="nickname" type="text" name="nickname" value="" readonly>
+            Password: <input id="password" type="text" name="password" value="" readonly>
             <a href="https://www.guerrillamail.com" target="_blank">Retrieve email</a>
             <br><br>
             Address:<br>
-            Street: <input id="street" type="text" name="street" value="">
-            City: <input id="city" type="text" name="city" value="">
-            State: <input id="state" type="text" name="state" value="">
-            ZIP: <input id="zip" type="text" name="zip" value="">
+            Street: <input id="street" type="text" name="street" value="" readonly>
+            City: <input id="city" type="text" name="city" value="" readonly>
+            State: <input id="state" type="text" name="state" value="" readonly>
+            ZIP: <input id="zip" type="text" name="zip" value="" readonly>
         </form>
         <button>Click for awesomeness!</button>
     </body>
