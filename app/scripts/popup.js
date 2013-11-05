@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (liste.indexOf(e.target.id) != -1) {
             selectElement(e.target);
             storeValue(e.target.id, e.target.value);
-        }r
+        }
 
     }, false);
 
