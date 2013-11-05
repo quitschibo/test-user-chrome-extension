@@ -49,7 +49,11 @@ function getEmail() {
     $.ajax({dataType:'json', url: 'https://www.guerrillamail.com/ajax.php?f=get_email_address', timeout:5000, success:onEmailRssSuccess, error:onEmailRssError, async: false});
 }
 
-function onEmailRssSuccess(result) {
+function onEmailRssSuccess(result, callFromLocalStorage) {
+    if (callFromLocalStorage != true) {
+        localStorage['TUX.email.result'] = JSON.stringify(result);
+    }
+
     console.log(result.email_addr);
     $('#email').val(result.email_addr);
 }
@@ -122,5 +126,10 @@ $( document ).ready(function() {
     var localResults = localStorage['TUX.result'];
     if (localResults) {
         onRssSuccess(JSON.parse(localResults), true);
+    }
+
+    var emailResult = localStorage['TUX.email.result'];
+    if (emailResult) {
+        onEmailRssSuccess(JSON.parse(emailResult), true);
     }
 });
