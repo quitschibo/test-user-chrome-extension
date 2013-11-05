@@ -12,3 +12,8 @@ html {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+
+a img {
+    width: 25px;
+    height: 25px;
+}
