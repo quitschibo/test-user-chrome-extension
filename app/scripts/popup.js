@@ -69,9 +69,23 @@ function doCalls() {
     getEmail();
 }
 
+function selectElement(target) {
+    console.log('works');
+    target.select();
+}
+
 // Add event listeners once the DOM has fully loaded by listening for the
 // `DOMContentLoaded` event on the document, and adding your listeners to
 // specific elements when it triggers.
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('button').addEventListener('click', doCalls);
+    //document.querySelector('#firstname').addEventListener('click', test);
+    document.addEventListener('click', function(e) {
+
+        var liste = ['firstname', 'lastname', 'email', 'nickname', 'password', 'street', 'city', 'state', 'zip'];
+        if (liste.indexOf(e.target.id) != -1) {
+            selectElement(e.target);
+        }
+
+    }, false);
 });
