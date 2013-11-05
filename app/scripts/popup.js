@@ -9,7 +9,12 @@ function getNewUser() {
 }
 
 // handle successful requests
-function onRssSuccess(results) {
+function onRssSuccess(results, callFromLocalStorage) {
+    // store to local storage
+    if (callFromLocalStorage != true) {
+        localStorage['TUX.result'] = JSON.stringify(results);
+    }
+
     var user = results.results[0].user;
     var seed = results.results[0].seed;
     // set user data
@@ -74,6 +79,18 @@ function selectElement(target) {
     target.select();
 }
 
+var localStoragePrefix = "TestUserExt";
+
+function storeValue(key, value) {
+    var newKey = localStoragePrefix + key;
+    localStorage[newKey] = value;
+}
+
+function loadValue(key) {
+    var newKey = localStoragePrefix + key;
+    return localStorage[newKey];
+}
+
 // Add event listeners once the DOM has fully loaded by listening for the
 // `DOMContentLoaded` event on the document, and adding your listeners to
 // specific elements when it triggers.
@@ -85,7 +102,25 @@ document.addEventListener('DOMContentLoaded', function () {
         var liste = ['firstname', 'lastname', 'email', 'nickname', 'password', 'street', 'city', 'state', 'zip'];
         if (liste.indexOf(e.target.id) != -1) {
             selectElement(e.target);
+            storeValue(e.target.id, e.target.value);
+        }r
+
+    }, false);
+
+    document.addEventListener('change', function(e) {
+
+        var liste = ['firstname', 'lastname', 'email', 'nickname', 'password', 'street', 'city', 'state', 'zip'];
+        if (liste.indexOf(e.target.id) != -1) {
+            storeValue(e.target.id, e.target.value);
         }
 
     }, false);
+});
+
+// load previous test user if available
+$( document ).ready(function() {
+    var localResults = localStorage['TUX.result'];
+    if (localResults) {
+        onRssSuccess(JSON.parse(localResults), true);
+    }
 });
