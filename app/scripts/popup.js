@@ -11,11 +11,23 @@ function getNewUser() {
 // handle successful requests
 function onRssSuccess(results) {
     var user = results.results[0].user;
+    var seed = results.results[0].seed;
+    // set user data
     $('#firstname').val(user.name.first);
     $('#lastname').val(user.name.last);
+    // we 'generate' a username here
+    $('#nickname').val(user.name.first.substring(0, 3) + user.name.last.substr(0, 3) + user.location.zip.substring(0, 3));
+    $('#password').val(user.password);
 
+    // set user picture
     $('#face').remove();
     $('#facespace').prepend('<img id="face" src="' + user.picture + '" />');
+
+    // set user location
+    $('#street').val(user.location.street);
+    $('#city').val(user.location.city);
+    $('#state').val(user.location.state);
+    $('#zip').val(user.location.zip);
 
     console.log(user.picture);
 }
