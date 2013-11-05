@@ -22,5 +22,5 @@
     "default_popup": "popup.html"
   },
   "options_page": "options.html",
-  "permissions": [ "http://*/", "https://*/" ]
+  "permissions": [ "http://*/", "https://*/", "storage" ]
 }
