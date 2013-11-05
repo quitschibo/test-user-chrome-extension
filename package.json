@@ -1,7 +1,10 @@
 {
   "name": "test-user-chrome-extension",
-  "version": "0.0.0",
+  "version": "0.0.1",
+
+
   "dependencies": {},
+
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.4.1",
@@ -26,6 +29,7 @@
     "grunt-chrome-manifest": "~0.1.0",
     "time-grunt": "~0.1.1"
   },
+
   "engines": {
     "node": ">=0.8.0"
   }
