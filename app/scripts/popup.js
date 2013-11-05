@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * Test user data handling
+ */
 // function for generating a test user by http://randomuser.me/
 function getNewUser() {
     $.ajax({dataType:'json', url: 'http://api.randomuser.me/', timeout:5000, success:onRssSuccess, error:onRssError, async: false});
@@ -22,7 +25,9 @@ function onRssError(results) {
     console.log('error');
 }
 
-
+/**
+ * Get email handling
+ */
 function getEmail() {
     $.ajax({dataType:'json', url: 'https://www.guerrillamail.com/ajax.php?f=get_email_address', timeout:5000, success:onEmailRssSuccess, error:onEmailRssError, async: false});
 }
@@ -37,10 +42,18 @@ function onEmailRssError(result) {
 }
 
 /**
+ * Forget email handling
+ */
+function forgetEmail() {
+    $.ajax({dataType:'json', url: 'https://www.guerrillamail.com/ajax.php?f=forget_me', timeout:5000, async: false});
+}
+
+/**
  * Just do all calls, when button is clicked
  */
 function doCalls() {
     getNewUser();
+    forgetEmail();
     getEmail();
 }
 
