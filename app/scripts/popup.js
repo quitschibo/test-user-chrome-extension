@@ -11,7 +11,7 @@ function getNewUser() {
 // handle successful requests
 function onRssSuccess(results, callFromLocalStorage) {
     // store to local storage
-    if (!callFromLocalStorage) {
+    if (callFromLocalStorage != true) {
         localStorage['TUX.result'] = JSON.stringify(results);
         // reset this for getting notified when new email will be received
         localStorage["TUX.email.listLength"] = 0;
