@@ -3,28 +3,28 @@
 //chrome.runtime.onInstalled.addListener(function (details) {
 //    console.log('previousVersion', details.previousVersion);
 //});
-var listLength = 0;
+if (!localStorage["TUX.email.listLength"]) {
+    localStorage["TUX.email.listLength"] = 0;
+}
 
 function startRequest() {
     $.ajax({dataType:'json', url: 'https://www.guerrillamail.com/ajax.php?f=get_email_list&offset=100', timeout:5000, success:onCheckEmailSuccess, async: false});
 
-    //https://www.guerrillamail.com/ajax.php?f=check_email&seq=1
     window.setTimeout(startRequest, 5000);
 }
 startRequest();
 
 function onCheckEmailSuccess(result) {
-    if (result.count > listLength) {
+    if (result.count > localStorage["TUX.email.listLength"]) {
         mailReceived();
-        listLength = result.count;
-    } else if (result.count < listLength) {
-        listLength = 0;
+        localStorage["TUX.email.listLength"] = result.count;
+    } else if (result.count < localStorage["TUX.email.listLength"]) {
+        localStorage["TUX.email.listLength"] = 0;
     }
 }
 
 function mailReceived() {
     var results = JSON.parse(localStorage['TUX.result']);
-
 
     var not = webkitNotifications.createNotification(results.results[0].user.picture, "Hey there, I received an email!", "Click here to open my mail account");
     not.addEventListener("click", function () {
