@@ -23,10 +23,13 @@ function onCheckEmailSuccess(result) {
 }
 
 function mailReceived() {
-    var not = webkitNotifications.createNotification("images/icon-16.png", "Email received", "Click here to open the mail");
+    var results = JSON.parse(localStorage['TUX.result']);
+
+
+    var not = webkitNotifications.createNotification(results.results[0].user.picture, "Hey there, I received an email!", "Click here to open my mail account");
     not.addEventListener("click", function () {
         window.open("https://www.guerrillamail.com");
-        notification.close();
+        not.close();
     });
     not.show();
 }
