@@ -17,3 +17,8 @@ a img {
     width: 25px;
     height: 25px;
 }
+
+#main {
+    width: 200px;
+    font-size: 9pt;
+}
