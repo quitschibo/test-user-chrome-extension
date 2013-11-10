@@ -18,8 +18,14 @@ function onCheckEmailSuccess(result) {
     if (result.count > localStorage["TUX.email.listLength"]) {
         mailReceived();
         localStorage["TUX.email.listLength"] = result.count;
+
+        // set badge text when email received
+        chrome.browserAction.setBadgeText({text: result.count});
     } else if (result.count < localStorage["TUX.email.listLength"]) {
         localStorage["TUX.email.listLength"] = 0;
+
+        // reset badge text
+        chrome.browserAction.setBadgeText({text: ""});
     }
 }
 

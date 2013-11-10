@@ -78,6 +78,9 @@ function doCalls() {
     getNewUser();
     forgetEmail();
     getEmail();
+
+    // reset badge text
+    chrome.browserAction.setBadgeText({text: ""});
 }
 
 function selectElement(target) {
