@@ -20,8 +20,8 @@ function onRssSuccess(results, callFromLocalStorage) {
     var user = results.results[0].user;
     var seed = results.results[0].seed;
     // set user data
-    $('#firstname').val(user.name.first);
-    $('#lastname').val(user.name.last);
+    $('#firstname').val(upperCase(user.name.first));
+    $('#lastname').val(upperCase(user.name.last));
     // we 'generate' a username here
     $('#nickname').val(user.name.first.substring(0, 3) + user.name.last.substr(0, 3) + user.location.zip.substring(0, 3));
     $('#password').val(user.password);
@@ -31,9 +31,9 @@ function onRssSuccess(results, callFromLocalStorage) {
     $('#facespace').prepend('<img id="face" src="' + user.picture + '" />');
 
     // set user location
-    $('#street').val(user.location.street);
-    $('#city').val(user.location.city);
-    $('#state').val(user.location.state);
+    $('#street').val(upperCase(user.location.street));
+    $('#city').val(upperCase(user.location.city));
+    $('#state').val(upperCase(user.location.state));
     $('#zip').val(user.location.zip);
 
     console.log(user.picture);
@@ -42,6 +42,21 @@ function onRssSuccess(results, callFromLocalStorage) {
 // handle unsuccessful requests
 function onRssError(results) {
     console.log('error');
+}
+
+function upperCase(text) {
+    var textParts = text.split(" ");
+    var result = "";
+    for (var i = 0; i < textParts.length; i++) {
+        var part = textParts[i];
+        console.log(part);
+        if (result != "") {
+            result = result + " ";
+        }
+        result = result + part.charAt(0).toUpperCase() + part.slice(1);
+    }
+
+    return result;
 }
 
 /**
