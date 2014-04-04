@@ -71,8 +71,12 @@ function onEmailRssSuccess(result, callFromLocalStorage) {
         localStorage['TUX.email.result'] = JSON.stringify(result);
     }
 
-    console.log(result.email_addr);
-    $('#email').val(result.email_addr);
+    // TODO: we want to choose the top level domain -> add selectable domain to options page
+    var atPosition = result.email_addr.indexOf("@");
+    var email = result.email_addr.substr(0, atPosition) + "@grr.la";
+
+    console.log(email);
+    $('#email').val(email);
 }
 
 function onEmailRssError(result) {
